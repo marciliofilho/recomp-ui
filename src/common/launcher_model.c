@@ -629,7 +629,7 @@ void launcher_model_init(LauncherModel* m,
     m->disc_selected = m->num_discs > 0
                            ? clampi(m->s.disc_index - 1, 0, m->num_discs - 1)
                            : -1;
-    /* Rewind buffer: 50/100/150/200; interval 1/4/8/12/15. */
+    /* Rewind buffer: 50/100/150/200; interval 1/4/8/12/15/30. */
     {
         int d = m->s.rewind_depth;
         if (d != 50 && d != 100 && d != 150 && d != 200)

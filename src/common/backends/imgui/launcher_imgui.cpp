@@ -4525,8 +4525,8 @@ void draw_display_controls(LauncherModel* m, const LauncherTheme& th) {
             launcher_model_toggle_rewind_enabled(m);
         if (ImGui::IsItemHovered(ImGuiHoveredFlags_DelayNormal)) {
             ImGui::SetTooltip(
-                "Preview earlier moments and continue from one (F8, or Select+R3).\n"
-                "Turning rewind off clears the stored history.");
+                "Preview earlier moments and continue from one (see the Rewind\n"
+                "hotkey). Turning rewind off clears the stored history.");
         }
         /* The two tuning rows only mean anything once it is on. */
         ImGui::BeginDisabled(!rewind_on);
@@ -4548,7 +4548,7 @@ void draw_display_controls(LauncherModel* m, const LauncherTheme& th) {
             launcher_model_cycle_rewind_interval(m);
         if (ImGui::IsItemHovered(ImGuiHoveredFlags_DelayNormal)) {
             ImGui::SetTooltip(
-                "Frames between rewind snapshots (1 / 4 / 8 / 12 / 15).\n"
+                "Frames between rewind snapshots (1 / 4 / 8 / 12 / 15 / 30).\n"
                 "Smaller intervals give finer control when choosing a moment.\n"
                 "Takes effect on the next launch.");
         }
