@@ -278,12 +278,47 @@ static inline LauncherTheme launcher_theme_gbc(void) {
     return t;
 }
 
+// "Kirby's Dream Land 3" theme. The pastel platformer on the SNES: a deep
+// twilight-plum ground (Dream Land's starry night sky), Kirby pink as the ONE
+// bold accent for brand + primary action, and the Warp Star's warm yellow as
+// the secondary accent for section headings. Mint / amber / sky-blue stay for
+// state and focus. CRT scanlines ON: this is a cartridge-era console title,
+// and the faint tube texture suits the game's soft, dotted pastel art.
+static inline LauncherTheme launcher_theme_kirby(void) {
+    LauncherTheme t = launcher_theme_default();   // inherit spacing/type/dims
+    t.background      = lng_rgba(0.090f, 0.059f, 0.133f, 1.0f); // #170F22 twilight plum
+    t.background2     = lng_rgba(0.141f, 0.094f, 0.200f, 1.0f); // #241833 lifted center
+    t.panel           = lng_rgba(0.153f, 0.102f, 0.220f, 1.0f); // #271A38 card
+    t.panel_hovered   = lng_rgba(0.216f, 0.141f, 0.306f, 1.0f); // #37244E
+    t.control         = lng_rgba(0.180f, 0.122f, 0.259f, 1.0f); // #2E1F42 button
+    t.control_hovered = lng_rgba(0.243f, 0.169f, 0.341f, 1.0f); // #3E2B57
+    t.border          = lng_rgba(0.337f, 0.227f, 0.447f, 1.0f); // #563A72 hairline
+    t.accent          = lng_rgba(1.000f, 0.616f, 0.753f, 1.0f); // #FF9DC0 Kirby pink
+    t.accent_dim      = lng_rgba(0.851f, 0.416f, 0.596f, 1.0f); // #D96A98 pressed/gradient
+    t.accent_text     = lng_rgba(0.165f, 0.063f, 0.141f, 1.0f); // #2A1024 dark plum ink
+    t.accent2         = lng_rgba(1.000f, 0.827f, 0.431f, 1.0f); // #FFD36E Warp Star yellow
+    t.text            = lng_rgba(1.000f, 0.953f, 0.973f, 1.0f); // #FFF3F8 warm white
+    t.text_muted      = lng_rgba(0.753f, 0.663f, 0.808f, 1.0f); // #C0A9CE lavender grey
+    t.good            = lng_rgba(0.455f, 0.902f, 0.659f, 1.0f); // #74E6A8 mint
+    t.warn            = lng_rgba(1.000f, 0.761f, 0.294f, 1.0f); // #FFC24B amber
+    t.focus_ring      = lng_rgba(0.561f, 0.847f, 1.000f, 1.0f); // #8FD8FF Dream Land sky
+    t.scanline        = lng_rgba(0.0f, 0.0f, 0.0f, 0.16f);
+    t.scanlines       = 1;                       // cartridge/CRT era: scanlines ON
+    return t;
+}
+
 // Pick a built-in theme by name ("psx" -> PlayStation, "gba" -> Game Boy
 // Advance, "gbc" -> Game Boy Color, "gb" -> Game Boy (DMG), "n64" -> Nintendo
-// 64, "nes" -> Nintendo Entertainment System, "genesis" -> Sega Genesis;
-// anything else -> default CRT). Note the "gb*" order: match "gba" and "gbc"
-// (3rd char) BEFORE the bare "gb" fallback.
+// 64, "nes" -> Nintendo Entertainment System, "genesis" -> Sega Genesis,
+// "kirby" -> Kirby's Dream Land 3; anything else -> default CRT). Note the
+// "gb*" order: match "gba" and "gbc" (3rd char) BEFORE the bare "gb" fallback.
 static inline LauncherTheme launcher_theme_by_name(const char* name) {
+    // "kirby" (the title's theme name). Checked before the console checks so
+    // the K names never fall through to another row.
+    if (name && (name[0] == 'k' || name[0] == 'K') &&
+        (name[1] == 'i' || name[1] == 'I') &&
+        (name[2] == 'r' || name[2] == 'R'))
+        return launcher_theme_kirby();
     if (name && (name[0] == 'p' || name[0] == 'P') &&
         (name[1] == 's' || name[1] == 'S'))
         return launcher_theme_psx();
