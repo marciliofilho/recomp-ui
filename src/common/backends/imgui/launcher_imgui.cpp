@@ -2032,10 +2032,14 @@ int settings_combo_row(const char* label, const LauncherTheme& th,
     return picked;
 }
 
-/* Window scale reads as "1x".."6x". Spelled out rather than formatted per
- * frame so the list is plain data, like every other choice list here. */
+/* Window scale reads as "1x".."8x". Spelled out rather than formatted per
+ * frame so the list is plain data, like every other choice list here. The
+ * upper end matches what the settings parser (and the SNES host, which accepts
+ * up to 10) can load: a config.ini carrying 7 or 8 used to render an empty
+ * combo because the widget stopped at 6. */
 static const SettingsChoice kScaleChoices[LNG_WINDOW_SCALE_MAX] = {
-    {1, "1x"}, {2, "2x"}, {3, "3x"}, {4, "4x"}, {5, "5x"}, {6, "6x"}
+    {1, "1x"}, {2, "2x"}, {3, "3x"}, {4, "4x"},
+    {5, "5x"}, {6, "6x"}, {7, "7x"}, {8, "8x"}
 };
 static const SettingsChoice kFullscreenChoices[] = {
     {0, "Off"}, {1, "Borderless"}, {2, "Exclusive"}

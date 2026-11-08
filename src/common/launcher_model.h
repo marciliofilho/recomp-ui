@@ -846,7 +846,7 @@ void launcher_model_cancel_restore_defaults(LauncherModel* m);
 // Window scale, in whole native-size steps. LNG_WINDOW_SCALE_MAX bounds both
 // the cycle's wrap and the dropdown's list, so the two can never offer
 // different sets.
-#define LNG_WINDOW_SCALE_MAX 6
+#define LNG_WINDOW_SCALE_MAX 8
 void launcher_model_cycle_scale(LauncherModel* m);   // 1..LNG_WINDOW_SCALE_MAX wrap
 void launcher_model_set_scale(LauncherModel* m, int scale);  // clamped
 void launcher_model_toggle_filter(LauncherModel* m);
